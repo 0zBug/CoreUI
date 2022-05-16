@@ -1,5 +1,5 @@
 # Core UI
-**A UI Library for the Roblox CoreGui**
+**A UI Library for the Roblox CoreGui.**
 # Documentation
 ### Section
 **Creates a section from one of the tabs in the CoreGui.**
