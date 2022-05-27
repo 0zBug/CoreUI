@@ -25,9 +25,13 @@ function Library.Section(Sectione)
 
     local SectionTab = HubBar:FindFirstChild(Sections[Sectione][2])
 
-    local CustomTab = PageViewInnerFrame:FindFirstChild(Sections[Sectione][1]):FindFirstChild("CustomTab")
-    if CustomTab then
-        CustomTab:Destroy()
+    local SectionView = PageViewInnerFrame:FindFirstChild(Sections[Sectione][1])
+    if SectionView then
+        local CustomTab = SectionView:FindFirstChild("CustomTab")
+        
+        if CustomTab then
+            CustomTab:Destroy()
+        end
     end
 
     local Frame = Instance.new("Frame", PageViewInnerFrame)
