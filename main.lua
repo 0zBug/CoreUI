@@ -44,7 +44,7 @@ function Library.Section(Sectione)
 
         if SectionView then
             for _, v in pairs(SectionView:GetChildren()) do
-                if v.Name ~= "CustomTab" then
+                if v ~= Frame then
                     pcall(function()
                         v.Visible = false
                     end)
