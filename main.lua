@@ -1,4 +1,3 @@
-
 local Library = {}
 
 local CoreGui = game:GetService("CoreGui")
@@ -74,8 +73,6 @@ function Library.Section(Sectione)
     end
 
     Section.Button = function(Text, Callback)
-        local n = {} for i = 1, 9 do table.insert(n, string.char(string.sub(string.format("%09d", #Frame:GetChildren()), i, i) + 97)) end
-
         local Button = Instance.new("ImageButton", Frame)
         Button.Name = "Button"
         Button.LayoutOrder = #Frame:GetChildren()
@@ -491,6 +488,7 @@ function Library.Section(Sectione)
         RightButton_2.MouseEnter:Connect(function()
             RightButton_2.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end)
+        
         RightButton_2.MouseLeave:Connect(function()
             RightButton_2.ImageColor3 = Color3.fromRGB(204, 204, 204)
         end)
@@ -498,12 +496,14 @@ function Library.Section(Sectione)
         LeftButton_2.MouseEnter:Connect(function()
             LeftButton_2.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end)
+        
         LeftButton_2.MouseLeave:Connect(function()
             LeftButton_2.ImageColor3 = Color3.fromRGB(204, 204, 204)
         end)
 
         LeftButton.MouseButton1Down:Connect(function()
             if Default - 1 < 0 then return end
+            
             Default = Default - 1
             Callback(lerp(Minimum, Maximum, Default / 10))
 
