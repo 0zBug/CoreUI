@@ -25,6 +25,11 @@ function Library.Section(Sectione)
 
     local SectionTab = HubBar:FindFirstChild(Sections[Sectione][2])
 
+    local CustomTab = PageViewInnerFrame:FindFirstChild(Sections[Sectione][1]):FindFirstChild("CustomTab")
+    if CustomTab then
+        CustomTab:Destroy()
+    end
+
     local Frame = Instance.new("Frame", PageViewInnerFrame)
     Frame.Visible = false
     Frame.Name = "CustomTab"
@@ -39,19 +44,21 @@ function Library.Section(Sectione)
     UIListLayout.FillDirection = "Vertical"
 
     RunService.Heartbeat:Connect(function()
-        local SectionView = PageViewInnerFrame:FindFirstChild(Sections[Sectione][1])
+        if Frame.Parent then
+            local SectionView = PageViewInnerFrame:FindFirstChild(Sections[Sectione][1])
 
-        if SectionView then
-            for _, v in pairs(SectionView:GetChildren()) do
-                if v ~= Frame then
-                    pcall(function()
-                        v.Visible = false
-                    end)
+            if SectionView then
+                for _, v in pairs(SectionView:GetChildren()) do
+                    if v ~= Frame then
+                        pcall(function()
+                            v.Visible = false
+                        end)
+                    end
                 end
-            end
 
-            Frame.Parent = SectionView
-            Frame.Visible = SectionView.Visible
+                Frame.Parent = SectionView
+                Frame.Visible = SectionView.Visible
+            end
         end
     end)
 
@@ -73,6 +80,8 @@ function Library.Section(Sectione)
     end
 
     Section.Button = function(Text, Callback)
+        local n = {} for i = 1, 9 do table.insert(n, string.char(string.sub(string.format("%09d", #Frame:GetChildren()), i, i) + 97)) end
+
         local Button = Instance.new("ImageButton", Frame)
         Button.Name = "Button"
         Button.LayoutOrder = #Frame:GetChildren()
@@ -488,7 +497,6 @@ function Library.Section(Sectione)
         RightButton_2.MouseEnter:Connect(function()
             RightButton_2.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end)
-        
         RightButton_2.MouseLeave:Connect(function()
             RightButton_2.ImageColor3 = Color3.fromRGB(204, 204, 204)
         end)
@@ -496,14 +504,12 @@ function Library.Section(Sectione)
         LeftButton_2.MouseEnter:Connect(function()
             LeftButton_2.ImageColor3 = Color3.fromRGB(255, 255, 255)
         end)
-        
         LeftButton_2.MouseLeave:Connect(function()
             LeftButton_2.ImageColor3 = Color3.fromRGB(204, 204, 204)
         end)
 
         LeftButton.MouseButton1Down:Connect(function()
             if Default - 1 < 0 then return end
-            
             Default = Default - 1
             Callback(lerp(Minimum, Maximum, Default / 10))
 
