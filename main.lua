@@ -7,7 +7,7 @@ local HttpService = game:GetService("HttpService")
 local RobloxGui = CoreGui:WaitForChild("RobloxGui")
 local SettingsShield = RobloxGui:WaitForChild("SettingsShield"):WaitForChild("SettingsShield")
 local MenuContainer = SettingsShield:WaitForChild("MenuContainer")
-local HubBar = MenuContainer:WaitForChild("HubBar")
+local HubBar = MenuContainer:WaitForChild("HubBar").HubBarContainer
 local PageViewClipper = MenuContainer:WaitForChild("PageViewClipper")
 local PageView = PageViewClipper:WaitForChild("PageView")
 local PageViewInnerFrame = PageView:WaitForChild("PageViewInnerFrame")
@@ -24,8 +24,8 @@ function Library.Section(Sectione)
     local Section = {}
 
     local SectionTab = HubBar:FindFirstChild(Sections[Sectione][2])
-
     local SectionView = PageViewInnerFrame:FindFirstChild(Sections[Sectione][1])
+
     if SectionView then
         local CustomTab = SectionView:FindFirstChild("CustomTab")
         
