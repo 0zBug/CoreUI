@@ -7,10 +7,15 @@ local HttpService = game:GetService("HttpService")
 local RobloxGui = CoreGui:WaitForChild("RobloxGui")
 local SettingsShield = RobloxGui:WaitForChild("SettingsShield"):WaitForChild("SettingsShield")
 local MenuContainer = SettingsShield:WaitForChild("MenuContainer")
-local HubBar = MenuContainer:WaitForChild("HubBar").HubBarContainer
+local HubBar = MenuContainer:WaitForChild("HubBar")
+local HubBarContainer = HubBar:FindFirstChild("HubBarContainer")
 local PageViewClipper = MenuContainer:WaitForChild("PageViewClipper")
 local PageView = PageViewClipper:WaitForChild("PageView")
 local PageViewInnerFrame = PageView:WaitForChild("PageViewInnerFrame")
+
+if HubBarContainer then
+    HubBar = HubBarContainer
+end
 
 local getcustomasset = getsynasset or getcustomasset
 
